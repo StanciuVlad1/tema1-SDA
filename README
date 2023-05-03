@@ -1,0 +1,77 @@
+ Implementarea problemei a inceput cu structura de proiect aleasa.Am dorit sa
+fac un schelet estetic, in opinia mea.Am inceput cu includerea librariilor,apoi
+am definit fiecare structura cu un nume intuitiv care indeplinesc conditiile
+din cerinta problemei.Spre exemplu structura BandaMagica a fost definita cu
+santinela.In implementarea structurii de coada, am definit informatia nodului
+de tip "char data[18]".Am ales un vector static, deoarece stiam ca cea mai
+lunga comanda are 17 caractere, respectiv "MOVE_RIGHT_CHAR X" si am considerat
+ ca nu ar trebui sa crestem complexitatea codului cu alocari si dealocari de
+memorie dinamica pentru acest lucru.
+ Dupa ce am implementat structurile, am definit semnaturile fiecarei functii 
+utilizata pentru rezolvarea problemei, explicand succint ce utilizare are
+fiecare.Prima functie implementata a fost cea pentru initializarea benzii
+magice in care am definit santinela si primul element al benzii cu informatia
+specifica "#" si legaturile acestuia.Apoi au urmat functiile pentru fiecare 
+comanda data in cerinta.
+ Pentru functia "Move_left" am tinut cont doar daca degetul nu se afla pe
+prima pozitie, in caz afirmativ mutam degetul, iar in caz contrat nu facem
+nimic.
+ Pentru functia "Move_right" am verificat daca degetul se afla pe ultima
+pozitie in banda.In caz afirmativ cream un nou nod si il adaugam la final,
+realizand legaturile necesare.In caz contrar, mutam degetul cu o pozitie mai la
+dreapta.
+ Pentru functia "Move_left_char" am luat un iterator si m-am plimbat prin banda
+cu un for.Daca se gasea nodul care sa aiba ca informatie caracterul cautat,
+degetul se actualiza si pointa la nodul gasit si am utilizat un break pentru
+eficienta.Daca ajungeam ca iterator-ul sa pointeze la santinela, afisam in
+fisierul de output mesajul "ERROR"
+ Pentru functia "Move_right_char" am luat un iterator si m-am plimbat prin
+banda cu un for pana la penultima pozitie.Daca nu se gasea caracterul cautat,
+luam cazul special pentru ultimul element pentru a ne putea crea legaturile
+necesare pentru adaugarea nodului la finalul benzii magice si degetul este
+modificat sa pointeze la nodul nou adaugat.Daca elementul era gasit inainte de
+ultimul nod, degetul era modificat sa pointeze la nodul respectiv si este dat
+un break pentru eficienta.
+ Pentru functia "Write_c" doar punem in informatia nodului la care pointeaza
+degetul, parametrul primit la apelarea functiei.
+Pentru functia "Insert_left" am verificat daca degetul pointeaza la primul
+element din banda.In caz afirmativ afisam mesajul "ERROR" in fisierul de
+output.Altfel cream un nou nod la stanga nodului la care pointeaza degetul,
+stabilim legaturile corespunzatoare si introducem informatia primita ca
+parametru.
+ Pentru functia "Insert_right" am creat un nod nou la dreapta nodului la care
+pointeaza degetul, am inserat infromatia primita ca parametru si am tinut cont
+doar de faptul ca daca este ultimul nod din banda. Nu mai cream legatura pentru
+NULL de nod anterior.
+ Pentru functia "Show_current" am afisat in fisierul de output informatia din
+nodul la care pointeaza degetul.
+ Pentru functia "Show" am luat un iterator, am parcurs banda magica si am afisat
+continutul fiecarui nod, avand grija ca la nodul care este egal cu cel la care
+pointeaza degetul sa afisam informatia intre doua bari "| |".
+ Apoi am implementat functiile de baza pentru initializarea unei stive/cozi,
+pentru stergerea unui nod din aceste structuri, pentru adaugarea unui nod in
+aceste structuri si pentru eliberarea memoriei ocupata de aceste structuri.
+ De asemena, am implementat si o functie pentru eliberarea memoriei ocupata
+de banda magica.
+ Pentru functia "execute" am verificat cu functia "strstr" ce comanda se afla
+in continul nodului de la inceputul stivei si am apelat functia corespunzatoare
+In cazul in care era vorba despre "Move_left" sau "Move_right" am retinut
+pointerul la care pointa degetul inainte de realizarea operatiei si am adaugat
+adresa acestuia la stiva de UNDO.Pentru "Move_left" am avut caz special de
+verificat daca s-a realizat cu succes prin verificarea daca adresa initiala la
+care pointa degetul este diferita de cea la care pointeaza dupa efectuarea
+operatiei.
+ Pentru functia "rezolvare" am declarat un int "n" care reprezinta primul numar
+din fisierul de input ca sa stim cate comenzi avem de citit.Am declarat un
+iterator "i" pentru a citi fiecare rand din fisierul de input.Citirea a fost
+realizata cu fgets() care pune un "\n" inainte de "\0" asa ca trebuit manual sa
+mutam "\0" cu o pozitie mai la stanga.Apoi am verificat cu "strstr" daca
+comanda citita este una de update,caz in care comanda era adaugata in coada,iar
+in caz contrar se apela functia corespunzatoare la pasul "i", adica pasul
+curent.
+ Punctajul locat obtinut este : 100.0/100.0, iar pentru valgrind
+20/20. Totalul a fost maxim.
+
+
+
+
